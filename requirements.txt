@@ -1,0 +1,5 @@
+PyYAML~=5.3.1
+pycurl~=7.43.0.5
+ldap3~=2.7
+SATOSA~=6.1.0
+setuptools~=46.1.3
