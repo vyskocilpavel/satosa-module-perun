@@ -1,0 +1,8 @@
+module: perun.micro_services.perun_identity.PerunIdentity
+name: PerunIdentity
+config:
+  interface: ldap
+  perun_config_file_name: /etc/satosa/plugins/perun/micro_services/perun_configuration.yml
+  uids_identifiers:
+    - edupersonuniqueid
+    - displayname

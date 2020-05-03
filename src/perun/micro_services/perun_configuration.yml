@@ -1,0 +1,8 @@
+ldap.hostname: 'ldaps://perun.cesnet.cz'
+ldap.user: ''
+ldap.password: ''
+ldap.base: 'dc=perun,dc=cesnet,dc=cz'
+
+rpc.hostname: 'https://perun-dev.cesnet.cz/ba/rpc/'
+rpc.user: ''
+rpc.password: ''
