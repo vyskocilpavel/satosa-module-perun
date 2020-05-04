@@ -37,7 +37,7 @@ class RpcConnector:
         c.setopt(pycurl.CUSTOMREQUEST, 'POST')
         c.setopt(pycurl.POSTFIELDS, params_json)
         c.setopt(c.WRITEDATA, buffer)
-        c.setopt(pycurl.HTTPHEADER, ['Content-Type:application/json', 'Content-Length: {}'.format(len(params_json)) ])
+        c.setopt(pycurl.HTTPHEADER, ['Content-Type:application/json', 'Content-Length: {}'.format(len(params_json))])
         c.setopt(pycurl.CONNECTTIMEOUT, self.CONNECT_TIMEOUT)
         c.setopt(pycurl.TIMEOUT, self.TIMEOUT)
 
