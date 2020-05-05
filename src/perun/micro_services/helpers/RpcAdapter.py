@@ -1,14 +1,14 @@
 import logging
 
 import yaml
-from perun.micro_services.helpers.PerunAdapter import PerunAdapter
+from perun.micro_services.helpers.PerunAdapterAbstract import PerunAdapterAbstract
 from perun.micro_services.helpers.RpcConnector import RpcConnector
 from perun.micro_services.models.User import User
 
 logger = logging.getLogger(__name__)
 
 
-class RpcAdapter(PerunAdapter):
+class RpcAdapter(PerunAdapterAbstract):
 
     PERUN_CONFIG_FILE_NAME = 'perun_config_file_name'
 
@@ -18,9 +18,9 @@ class RpcAdapter(PerunAdapter):
 
     connector = None
 
-    def __init__(self, config):
+    def __init__(self, config_file):
 
-        with open(config[self.PERUN_CONFIG_FILE_NAME], "r") as f:
+        with open(config_file, "r") as f:
             perun_configuration = yaml.safe_load(f)
             hostname = perun_configuration.get(self.PERUN_RPC_HOSTNAME, None)
             user = perun_configuration.get(self.PERUN_RPC_USER, None)
@@ -56,3 +56,15 @@ class RpcAdapter(PerunAdapter):
 
         logger.debug('User not found')
         return user
+
+    def get_facility_by_entity_id(self, entity_id):
+        pass
+
+    def get_user_groups_on_facility(self, user, facility):
+        pass
+
+    def get_facility_capabilities(self, entity_id):
+        pass
+
+    def get_resource_capabilities(self, facility, groups):
+        pass

@@ -1,3 +1,9 @@
+"""
+Ldap Connector
+"""
+__author__ = "Pavel Vyskocil"
+__email__ = "Pavel.Vyskocil@cesnet.cz"
+
 import json
 import time
 import logging
@@ -8,10 +14,6 @@ logger = logging.getLogger(__name__)
 
 
 class LdapConnector:
-
-    hostname = None
-    user = None
-    password = None
 
     def __init__(self, hostname, user, password):
         self.hostname = hostname
@@ -56,7 +58,10 @@ class LdapConnector:
 
         response = self.get_simplefied_entries(conn.entries)
         response_time = round((end_time - start_time) * 1000)
-        logger.debug("LdapConnector.search - search query proceeded in {} ms. Query base: {}, filter: {}, response: {}.".format(response_time, base, filter, response))
+        logger.debug(
+            f'LdapConnector.search - search query proceeded in {response_time} ms. '
+            f'Query base: {base}, filter: {filter}, response: {response}.'
+        )
         conn.unbind()
         return response
 

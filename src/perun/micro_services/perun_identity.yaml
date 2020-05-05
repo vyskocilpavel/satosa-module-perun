@@ -1,6 +1,8 @@
 module: perun.micro_services.perun_identity.PerunIdentity
 name: PerunIdentity
 config:
+  # Perun interface, which will be used
+  # Available: ldap/rpc
   interface: ldap
   perun_config_file_name: /etc/satosa/plugins/perun/micro_services/perun_configuration.yml
   uids_identifiers:

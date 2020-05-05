@@ -57,6 +57,13 @@ class RpcConnector:
             raise Exception('Exception from Perun: {}'.format(result['message']))
 
         response_time = end_time - start_time
-        logger.error("POST call {} with params {}, response {} in {} ms".format(uri, params_json, result, round(response_time * 1000)))
+        logger.error(
+            "POST call {} with params {}, response {} in {} ms".format(
+                uri,
+                params_json,
+                result,
+                round(response_time * 1000)
+            )
+        )
 
         return result
