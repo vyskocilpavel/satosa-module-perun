@@ -54,6 +54,7 @@ class PerunIdentity(ResponseMicroService):
         logger.error(f"User: {user} found")
         if user is not None:
             attributes.update({'perun_id': [user.id]})
+            attributes.update({'perun_id_text': user.id})
             data.attributes = attributes
 
         return super().process(context, data)
