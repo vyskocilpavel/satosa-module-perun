@@ -54,3 +54,18 @@ class RpcAdapter(PerunAdapterAbstract):
                 logger.debug(ex.args)
 
         return user
+
+    def get_facility_by_identifier(self, identifier):
+        pass
+
+    def get_user_groups_on_facility(self, user, facility_id):
+        pass
+
+    def get_facility_capabilities(self, facility_id):
+        pass
+
+    def get_resource_capabilities(self, facility_id, groups):
+        pass
+
+    def get_user_attributes_values(self, user_id, attributes):
+        pass

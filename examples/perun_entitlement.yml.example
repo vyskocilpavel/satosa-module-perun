@@ -1,0 +1,17 @@
+module: perun.micro_services.perun_entitlement.PerunEntitlement
+name: PerunEntitlement
+config:
+  # Perun interface, which will be used
+  # Available: ldap/rpc
+  interface: ldap
+  perun_config_file_name: /etc/satosa/plugins/perun/micro_services/perun_configuration.yml
+
+  # Entitlement prefix
+  # For example 'urn:geant:cesnet.cz'
+  prefix: 'urn:geant:cesnet.cz'
+
+  # Entitlement suffix
+  # For example 'perun.cesnet.cz'
+  suffix: 'perun.cesnet.cz'
+
+  forwarded_entitlement_perun_attr_name: 'eduPersonEntitlement'
