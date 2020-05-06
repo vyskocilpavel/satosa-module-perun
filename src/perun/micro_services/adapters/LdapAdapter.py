@@ -9,6 +9,7 @@ import logging
 import yaml
 from perun.micro_services.adapters.LdapConnector import LdapConnector
 from perun.micro_services.adapters.PerunAdapterAbstract import PerunAdapterAbstract
+from perun.micro_services.models.User import User
 
 logger = logging.getLogger(__name__)
 
@@ -33,3 +34,29 @@ class LdapAdapter(PerunAdapterAbstract):
             raise Exception('One of required attributes is not defined!')
 
         self.connector = LdapConnector(hostnames, user, pasword)
+
+    def get_perun_user(self, idp_entity_id, uids):
+
+        ldap_query = ''
+        for uid in uids:
+            ldap_query += '(eduPersonPrincipalNames=' + uid + ')'
+
+        if not ldap_query.strip():
+            return None
+
+        response = self.connector.search_for_entity('ou=People,' + self.base,
+                                                    '(|' + ldap_query + ')',
+                                                    ['perunUserId', 'displayName', 'cn']
+                                                    )
+
+        if response is None:
+            return None
+
+        if response['displayName'][0].strip():
+            name = response['displayName'][0]
+        elif response['cn'][0].strip():
+            name = response['cn'][0]
+        else:
+            name = None
+
+        return User(response['perunUserId'][0], name)
