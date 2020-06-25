@@ -33,7 +33,7 @@ class RpcConnector:
         if params is None:
             params = []
 
-        params_query = urllib.parse.urlencode(params)
+        params_query = urllib.parse.urlencode(params, True)
         params_query = re.sub(r'%5B\d+%5D', '%5B%5D', params_query)
 
         uri = f'{self.rpc_url}json/{manager}/{method}'
@@ -57,7 +57,7 @@ class RpcConnector:
         result_json = body.decode('utf-8')
         result = json.loads(result_json)
 
-        if 'errorId' in result.keys():
+        if result is not None and not isinstance(result, list) and 'errorId' in result.keys():
             raise Exception(f'Exception from Perun: {result["message"]}')
 
         response_time = round(end_time - start_time, 3)
@@ -73,7 +73,6 @@ class RpcConnector:
 
         params_json = json.dumps(params)
         uri = f'{self.rpc_url}json/{manager}/{method}'
-
         buffer = BytesIO()
         c = pycurl.Curl()
         c.setopt(pycurl.URL, uri)
@@ -97,7 +96,7 @@ class RpcConnector:
         result_json = body.decode('utf-8')
         result = json.loads(result_json)
 
-        if 'errorId' in result.keys():
+        if result is not None and not isinstance(result, list) and 'errorId' in result.keys():
             raise Exception(f'Exception from Perun: {result["message"]}')
 
         response_time = round(end_time - start_time, 3)
